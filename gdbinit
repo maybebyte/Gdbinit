@@ -2318,16 +2318,16 @@ define stepoframework
             set $_bit5 = ($_branchesint >> 0x5) & 1
             set $_bit4 = ($_branchesint >> 0x4) & 1
 
-            #	set $_lastbyte = *(unsigned char *)($pc+3)
-            #	set $_bits2724 = $_lastbyte & 0x1
-            #	set $_bits3128 = $_lastbyte >> 4
-            #	if ($_bits3128 == 0xF)
-            #		set $_bits2724 = $_lastbyte & 0xA
-            #		set $_bits2724 = $_bits2724 >> 1
-            #	end
-            #	set $_previousbyte = *(unsigned char *)($pc+2)
-            #	set $_bits2320 = $_previousbyte >> 4
-            #	printf "bits2724: %x bits2320: %x\n", $_bits2724, $_bits2320
+            # set $_lastbyte = *(unsigned char *)($pc+3)
+            # set $_bits2724 = $_lastbyte & 0x1
+            # set $_bits3128 = $_lastbyte >> 4
+            # if ($_bits3128 == 0xF)
+            #     set $_bits2724 = $_lastbyte & 0xA
+            #     set $_bits2724 = $_bits2724 >> 1
+            # end
+            # set $_previousbyte = *(unsigned char *)($pc+2)
+            # set $_bits2320 = $_previousbyte >> 4
+            # printf "bits2724: %x bits2320: %x\n", $_bits2724, $_bits2320
 
             if ($_bit27 == 0 && $_bit26 == 0 && $_bit25 == 0 && $_bit24 == 1 && $_bit23 == 0 && $_bit22 == 0 && $_bit21 == 1 && $_bit20 == 0 && $_bit7 == 0 && $_bit6 == 0 && $_bit5 == 0 && $_bit4 == 1)
                 printf "Found a bx Rn\n"
