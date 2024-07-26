@@ -127,38 +127,39 @@ set $COLOR_CPUFLAGS = $RED
 
 # this is ugly but there's no else if available :-(
 define color
- if $USECOLOR == 1
-    # BLACK
-    if $arg0 == 0
-        echo \033[30m
-    else
-        # RED
-        if $arg0 == 1
-            echo \033[31m
+    if $USECOLOR == 1
+        # BLACK
+        if $arg0 == 0
+            echo \033[30m
         else
-            # GREEN
-            if $arg0 == 2
-                echo \033[32m
+            # RED
+            if $arg0 == 1
+                echo \033[31m
             else
-                # YELLOW
-                if $arg0 == 3
-                    echo \033[33m
+                # GREEN
+                if $arg0 == 2
+                    echo \033[32m
                 else
-                    # BLUE
-                    if $arg0 == 4
-                        echo \033[34m
+                    # YELLOW
+                    if $arg0 == 3
+                        echo \033[33m
                     else
-                        # MAGENTA
-                        if $arg0 == 5
-                            echo \033[35m
+                        # BLUE
+                        if $arg0 == 4
+                            echo \033[34m
                         else
-                            # CYAN
-                            if $arg0 == 6
-                                echo \033[36m
+                            # MAGENTA
+                            if $arg0 == 5
+                                echo \033[35m
                             else
-                                # WHITE
-                                if $arg0 == 7
-                                    echo \033[37m
+                                # CYAN
+                                if $arg0 == 6
+                                    echo \033[36m
+                                else
+                                    # WHITE
+                                    if $arg0 == 7
+                                        echo \033[37m
+                                    end
                                 end
                             end
                         end
@@ -167,7 +168,6 @@ define color
             end
         end
     end
- end
 end
 
 define color_reset
@@ -660,7 +660,7 @@ define eflags
         printf "  I <%d>  F <%d>  T <%d> \n",\
                (($cpsr >> 7) & 1), (($cpsr >> 6) & 1), \
                (($cpsr >> 5) & 1)
-     else
+    else
         printf "     OF <%d>  DF <%d>  IF <%d>  TF <%d>",\
                (((unsigned int)$eflags >> 0xB) & 1), (((unsigned int)$eflags >> 0xA) & 1), \
                (((unsigned int)$eflags >> 9) & 1), (((unsigned int)$eflags >> 8) & 1)
@@ -673,7 +673,7 @@ define eflags
         printf "  VM <%d>  RF <%d>  NT <%d>  IOPL <%d>\n",\
                (((unsigned int)$eflags >> 0x11) & 1), (((unsigned int)$eflags >> 0x10) & 1),\
                (((unsigned int)$eflags >> 0xE) & 1), (((unsigned int)$eflags >> 0xC) & 3)
-     end
+    end
 end
 document eflags
 Syntax: eflags
@@ -1276,7 +1276,7 @@ define smallregisters
         set $si = $esi & 0xffff
         # from edi
         set $di = $edi & 0xffff
-     end
+    end
 end
 document smallregisters
 Syntax: smallregisters
@@ -2408,11 +2408,11 @@ define stepoframework
             end
             # FIXME: still missing a few?
             if ($_byte1 == 0x41 || $_byte1 == 0x40)
-               if ($_byte2 == 0xFF)
+                if ($_byte2 == 0xFF)
                     if ($_byte3 == 0xD0 || $_byte3 == 0xD1 || $_byte3 == 0xD2 || $_byte3 == 0xD3 || $_byte3 == 0xD4 || $_byte3 == 0xD5 ||  $_byte3 == 0xD6 || $_byte3 == 0xD7)
                         set $_nextaddress = $pc + 0x3
                     end
-               end
+                end
             end
         end
         # if we have found a call to bypass we set a temporary breakpoint on next instruction and continue
@@ -2424,9 +2424,9 @@ define stepoframework
             end
             continue
             # else we just single step
-         else
+        else
             nexti
-         end
+        end
     end
 end
 document stepoframework
@@ -2509,13 +2509,13 @@ define cfc
         else
             set $cpsr->c = $tempflag|0x1
         end
-     else
+    else
         if ((unsigned int)$eflags & 1)
             set $eflags = (unsigned int)$eflags&~0x1
         else
             set $eflags = (unsigned int)$eflags|0x1
         end
-     end
+    end
 end
 document cfc
 Syntax: cfc
@@ -2558,13 +2558,13 @@ define cfz
         else
             set $cpsr->z = $tempflag|0x1
         end
-     else
+    else
         if (((unsigned int)$eflags >> 6) & 1)
             set $eflags = (unsigned int)$eflags&~0x40
         else
             set $eflags = (unsigned int)$eflags|0x40
         end
-     end
+    end
 end
 document cfz
 Syntax: cfz
