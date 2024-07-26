@@ -26,7 +26,7 @@
 #         An updated version of the patch and binary is available at https://reverse.put.as/2011/02/21/update-to-gdb-patches-fix-a-new-bug/
 #
 # iOS NOTES: iOS gdb from Cydia (and Apple's) suffer from the same OS X bug.
-#			 If you are using this on Mac OS X or iOS, you must either attach gdb to a process
+#            If you are using this on Mac OS X or iOS, you must either attach gdb to a process
 #            or launch gdb without any options and then load the binary file you want to analyse with "exec-file" option
 #            If you load the binary from the command line, like $gdb binary-name, this will not work as it should
 #            For more information, read it here https://reverse.put.as/2008/11/28/apples-gdb-bug/
@@ -822,7 +822,7 @@ define regarm
         color $COLOR_REGVAL
     end
     printf " 0x%08X  ", $sp
-	# LR
+    # LR
     color $COLOR_REGNAME
     printf "LR:"
     if ($lr != $oldlr && $SHOWREGCHANGES == 1)
@@ -904,7 +904,7 @@ define regx64
     printf " 0x%016lX  ", $rdi
     # RSI
     color $COLOR_REGNAME
-   	printf "RSI:"
+    printf "RSI:"
     if ($rsi != $oldrsi && $SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
@@ -913,7 +913,7 @@ define regx64
     printf " 0x%016lX  ", $rsi
     # RDX
     color $COLOR_REGNAME
-   	printf "RDX:"
+    printf "RDX:"
     if ($rdx != $oldrdx && $SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
@@ -922,7 +922,7 @@ define regx64
     printf " 0x%016lX  ", $rdx
     # RCX
     color $COLOR_REGNAME
-   	printf "RCX:"
+    printf "RCX:"
     if ($rcx != $oldrcx && $SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
@@ -936,7 +936,7 @@ define regx64
     printf " 0x%016lX\n  ", $rip
     # R8
     color $COLOR_REGNAME
-   	printf "R8 :"
+    printf "R8 :"
     if ($r8 != $oldr8 && $SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
@@ -945,7 +945,7 @@ define regx64
     printf " 0x%016lX  ", $r8
     # R9
     color $COLOR_REGNAME
-   	printf "R9 :"
+    printf "R9 :"
     if ($r9 != $oldr9 && $SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
@@ -954,7 +954,7 @@ define regx64
     printf " 0x%016lX  ", $r9
     # R10
     color $COLOR_REGNAME
-   	printf "R10:"
+    printf "R10:"
     if ($r10 != $oldr10 && $SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
@@ -962,7 +962,7 @@ define regx64
     end
     printf " 0x%016lX  ", $r10
     # R11
-   	color $COLOR_REGNAME
+    color $COLOR_REGNAME
     printf "R11:"
     if ($r11 != $oldr11 && $SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
@@ -981,7 +981,7 @@ define regx64
     printf " 0x%016lX\n  ", $r12
     # R13
     color $COLOR_REGNAME
-   	printf "R13:"
+    printf "R13:"
     if ($r13 != $oldr13 && $SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
@@ -2642,7 +2642,7 @@ end
 # Overflow (V), bit 28
 define cfv
     if $ARM == 1
-    	set $tempflag = $cpsr->v
+        set $tempflag = $cpsr->v
         if ($tempflag & 1)
             set $cpsr->v = $tempflag&~0x1
         else
@@ -2757,7 +2757,7 @@ end
 
 define rint3
     if $ARM == 1
-      	set *(unsigned int *)$ORIGINAL_INT3ADDRESS = $ORIGINAL_INT3
+        set *(unsigned int *)$ORIGINAL_INT3ADDRESS = $ORIGINAL_INT3
         set $pc = $ORIGINAL_INT3ADDRESS
     else
         set *(unsigned char *)$ORIGINAL_INT3ADDRESS = $ORIGINAL_INT3
@@ -3227,7 +3227,7 @@ define assemble
             shell ASMOPCODE="$(while read -ep '>' r && test "$r" != end ; do echo -E "$r"; done)" ; GDBASMFILENAME=$RANDOM; \
             echo -e "BITS 64\n$ASMOPCODE" >/tmp/$GDBASMFILENAME ; /usr/local/bin/nasm -f bin -o /dev/stdout /tmp/$GDBASMFILENAME | /usr/local/bin/ndisasm -i -b64 /dev/stdin ; \
             /bin/rm -f /tmp/$GDBASMFILENAME
-    	else
+        else
             # no argument, assemble instructions to stdout
             shell ASMOPCODE="$(while read -ep '>' r && test "$r" != end ; do echo -E "$r"; done)" ; GDBASMFILENAME=$RANDOM; \
             echo -e "BITS 32\n$ASMOPCODE" >/tmp/$GDBASMFILENAME ; /usr/bin/nasm -f bin -o /dev/stdout /tmp/$GDBASMFILENAME | /usr/bin/ndisasm -i -b32 /dev/stdin ; \
