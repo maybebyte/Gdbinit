@@ -10,5 +10,5 @@ FEEDBACK: https://reverse.put.as - reverser@put.as
 
 You should read the header of the script for important information regarding some Mac OS X/iOS gdb bugs.
 
-Have fun,  
+Have fun,
 fG!
